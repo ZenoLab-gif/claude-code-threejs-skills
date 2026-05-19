@@ -1,0 +1,42 @@
+{
+  "name": "claude-code-threejs-skills",
+  "owner": {
+    "name": "ZenoLab-gif"
+  },
+  "description": "Marketplace for Claude Code Three.js skills.",
+  "plugins": [
+    {
+      "name": "threejs-skills",
+      "displayName": "Three.js Skills",
+      "source": {
+        "source": "github",
+        "repo": "ZenoLab-gif/claude-code-threejs-skills"
+      },
+      "description": "Claude Code skills for Three.js fundamentals, geometry, materials, lighting, textures, animation, loaders, shaders, post-processing, and interaction.",
+      "author": {
+        "name": "ZenoLab-gif"
+      },
+      "homepage": "https://github.com/ZenoLab-gif/claude-code-threejs-skills",
+      "repository": "https://github.com/ZenoLab-gif/claude-code-threejs-skills",
+      "license": "MIT",
+      "keywords": [
+        "claude-code",
+        "claude-code-skill",
+        "threejs",
+        "webgl",
+        "agent-skills",
+        "3d",
+        "gltf",
+        "webgpu"
+      ],
+      "category": "development",
+      "tags": [
+        "claude-code",
+        "threejs",
+        "webgl",
+        "agent-skills",
+        "3d"
+      ]
+    }
+  ]
+}

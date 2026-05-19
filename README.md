@@ -2,7 +2,7 @@
 
 A curated collection of Agent Skills that help Claude Code build Three.js scenes, 3D interactions, shaders, loaders, lighting, post-processing, and animation with accurate API patterns.
 
-This repository is a Claude Code oriented fork/adaptation of [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills). The original work is MIT licensed; this fork keeps the same spirit and attribution while making the repository easier to install, discover, and maintain as a public Claude Code skills source.
+This repository is a Claude Code oriented fork/adaptation of [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills). The original work is MIT licensed; this fork keeps the same spirit and attribution while making the repository easier to install, discover, and maintain as a public Claude Code skills and plugin source.
 
 ## What This Provides
 
@@ -18,22 +18,40 @@ When working with Three.js, general coding agents often need precise details abo
 
 ### Install with a skills CLI
 
-If you use an Agent Skills installer that supports GitHub repositories, install all skills from this fork:
+If you use an Agent Skills installer that supports GitHub repositories, install all skills from this repository:
 
 ```bash
-npx skills add Wei06188/threejs-skills
+npx skills add ZenoLab-gif/claude-code-threejs-skills
 ```
 
 If your installer expects a full URL:
 
 ```bash
-npx skills add https://github.com/Wei06188/threejs-skills
+npx skills add https://github.com/ZenoLab-gif/claude-code-threejs-skills
 ```
 
 To install a single skill:
 
 ```bash
-npx skills add https://github.com/Wei06188/threejs-skills --skill threejs-loaders
+npx skills add https://github.com/ZenoLab-gif/claude-code-threejs-skills --skill threejs-loaders
+```
+
+### Install as a Claude Code plugin
+
+Claude Code plugin skills are namespaced by the plugin name. After installation, invoke skills as `/threejs-skills:threejs-fundamentals`, `/threejs-skills:threejs-loaders`, and so on.
+
+Inside Claude Code:
+
+```text
+/plugin marketplace add ZenoLab-gif/claude-code-threejs-skills
+/plugin install threejs-skills@claude-code-threejs-skills
+```
+
+Or with the Claude Code CLI:
+
+```bash
+claude plugin marketplace add ZenoLab-gif/claude-code-threejs-skills
+claude plugin install threejs-skills@claude-code-threejs-skills
 ```
 
 ### Install for all Claude Code projects
@@ -41,17 +59,17 @@ npx skills add https://github.com/Wei06188/threejs-skills --skill threejs-loader
 Bash:
 
 ```bash
-git clone https://github.com/Wei06188/threejs-skills.git
+git clone https://github.com/ZenoLab-gif/claude-code-threejs-skills.git
 mkdir -p ~/.claude/skills
-cp -R threejs-skills/skills/* ~/.claude/skills/
+cp -R claude-code-threejs-skills/skills/* ~/.claude/skills/
 ```
 
 PowerShell:
 
 ```powershell
-git clone https://github.com/Wei06188/threejs-skills.git
+git clone https://github.com/ZenoLab-gif/claude-code-threejs-skills.git
 New-Item -ItemType Directory -Force "$HOME\.claude\skills"
-Copy-Item -Recurse -Force ".\threejs-skills\skills\*" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\claude-code-threejs-skills\skills\*" "$HOME\.claude\skills\"
 ```
 
 ### Install for one project
@@ -60,14 +78,14 @@ Copy the skill folders into a project's `.claude/skills` directory:
 
 ```bash
 mkdir -p .claude/skills
-cp -R path/to/threejs-skills/skills/* .claude/skills/
+cp -R path/to/claude-code-threejs-skills/skills/* .claude/skills/
 ```
 
 On Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force ".\.claude\skills"
-Copy-Item -Recurse -Force "path\to\threejs-skills\skills\*" ".\.claude\skills\"
+Copy-Item -Recurse -Force "path\to\claude-code-threejs-skills\skills\*" ".\.claude\skills\"
 ```
 
 This repository intentionally keeps the source skills under `skills/`. Claude Code loads them after they are installed or copied into `~/.claude/skills`, a project's `.claude/skills`, or a Claude Code plugin's `skills` directory.
@@ -89,13 +107,22 @@ This repository intentionally keeps the source skills under `skills/`. Claude Co
 
 ## Usage Examples
 
-Claude Code can load these skills automatically when your request matches a skill description. You can also invoke them directly after installation:
+Claude Code can load these skills automatically when your request matches a skill description. You can also invoke them directly after personal or project skill installation:
 
 ```text
 /threejs-fundamentals Create a responsive Three.js scene with a rotating cube
 /threejs-loaders Load a GLB model with Draco compression and play its animations
 /threejs-shaders Create a fresnel rim-light shader material
 /threejs-interaction Add raycast hover and click selection to meshes
+```
+
+When installed as a plugin, use the namespaced form:
+
+```text
+/threejs-skills:threejs-fundamentals Create a responsive Three.js scene with a rotating cube
+/threejs-skills:threejs-loaders Load a GLB model with Draco compression and play its animations
+/threejs-skills:threejs-shaders Create a fresnel rim-light shader material
+/threejs-skills:threejs-interaction Add raycast hover and click selection to meshes
 ```
 
 Natural-language requests work too:
