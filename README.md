@@ -1,144 +1,183 @@
 # Three.js Skills for Claude Code
 
-A curated collection of Three.js skill files that provide Claude Code with foundational knowledge for creating 3D elements and interactive experiences.
+A curated collection of Agent Skills that help Claude Code build Three.js scenes, 3D interactions, shaders, loaders, lighting, post-processing, and animation with accurate API patterns.
 
-## Purpose
+This repository is a Claude Code oriented fork/adaptation of [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills). The original work is MIT licensed; this fork keeps the same spirit and attribution while making the repository easier to install, discover, and maintain as a public Claude Code skills source.
 
-When working with Three.js, Claude Code starts with general programming knowledge but lacks specific Three.js API details, best practices, and common patterns. These skill files bridge that gap by providing:
+## What This Provides
 
-- Accurate API references and constructor signatures
-- Working code examples for common use cases
-- Performance optimization tips
-- Integration patterns between different Three.js systems
+When working with Three.js, general coding agents often need precise details about current constructors, import paths, renderer setup, cleanup, performance tradeoffs, and how different Three.js systems fit together. These skills provide:
+
+- Accurate Three.js API references and constructor signatures
+- Working examples for common 3D web tasks
+- Performance and cleanup guidance
+- Cross-references between related Three.js systems
+- Claude Code compatible `SKILL.md` frontmatter and descriptions
 
 ## Installation
 
-Clone this repository into your project or copy the `.claude/skills` directory:
+### Install with a skills CLI
+
+If you use an Agent Skills installer that supports GitHub repositories, install all skills from this fork:
 
 ```bash
-git clone https://github.com/pinkforest/threejs-playground.git
+npx skills add Wei06188/threejs-skills
 ```
 
-Or add as a submodule:
+If your installer expects a full URL:
 
 ```bash
-git submodule add https://github.com/pinkforest/threejs-playground.git
+npx skills add https://github.com/Wei06188/threejs-skills
 ```
+
+To install a single skill:
+
+```bash
+npx skills add https://github.com/Wei06188/threejs-skills --skill threejs-loaders
+```
+
+### Install for all Claude Code projects
+
+Bash:
+
+```bash
+git clone https://github.com/Wei06188/threejs-skills.git
+mkdir -p ~/.claude/skills
+cp -R threejs-skills/skills/* ~/.claude/skills/
+```
+
+PowerShell:
+
+```powershell
+git clone https://github.com/Wei06188/threejs-skills.git
+New-Item -ItemType Directory -Force "$HOME\.claude\skills"
+Copy-Item -Recurse -Force ".\threejs-skills\skills\*" "$HOME\.claude\skills\"
+```
+
+### Install for one project
+
+Copy the skill folders into a project's `.claude/skills` directory:
+
+```bash
+mkdir -p .claude/skills
+cp -R path/to/threejs-skills/skills/* .claude/skills/
+```
+
+On Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force ".\.claude\skills"
+Copy-Item -Recurse -Force "path\to\threejs-skills\skills\*" ".\.claude\skills\"
+```
+
+This repository intentionally keeps the source skills under `skills/`. Claude Code loads them after they are installed or copied into `~/.claude/skills`, a project's `.claude/skills`, or a Claude Code plugin's `skills` directory.
 
 ## Skills Included
 
-| Skill                      | Description                                                             |
-| -------------------------- | ----------------------------------------------------------------------- |
-| **threejs-fundamentals**   | Scene setup, cameras, renderer, Object3D hierarchy, coordinate systems  |
-| **threejs-geometry**       | Built-in shapes, BufferGeometry, custom geometry, instancing            |
-| **threejs-materials**      | PBR materials, basic/phong/standard materials, shader materials         |
-| **threejs-lighting**       | Light types, shadows, environment lighting, light helpers               |
-| **threejs-textures**       | Texture types, UV mapping, environment maps, render targets             |
-| **threejs-animation**      | Keyframe animation, skeletal animation, morph targets, animation mixing |
-| **threejs-loaders**        | GLTF/GLB loading, texture loading, async patterns, caching              |
-| **threejs-shaders**        | GLSL basics, ShaderMaterial, uniforms, custom effects                   |
-| **threejs-postprocessing** | EffectComposer, bloom, DOF, screen effects, custom passes               |
-| **threejs-interaction**    | Raycasting, camera controls, mouse/touch input, object selection        |
-
-## How It Works
-
-Claude Code automatically loads skill files from the `.claude/skills` directory when they match the context of your request. When you ask Claude Code to:
-
-- Create a 3D scene → `threejs-fundamentals` is loaded
-- Add lighting and shadows → `threejs-lighting` is loaded
-- Load a GLTF model → `threejs-loaders` is loaded
-- Create custom visual effects → `threejs-shaders` and `threejs-postprocessing` are loaded
+| Skill | Use when |
+| --- | --- |
+| `threejs-fundamentals` | Setting up scenes, cameras, renderers, Object3D hierarchy, coordinate systems, or transforms |
+| `threejs-geometry` | Creating built-in shapes, BufferGeometry, custom geometry, or instanced meshes |
+| `threejs-materials` | Styling meshes with PBR, basic, phong, standard, or shader materials |
+| `threejs-lighting` | Adding lights, shadows, environment lighting, helpers, or IBL |
+| `threejs-textures` | Working with texture types, UVs, environment maps, render targets, or texture optimization |
+| `threejs-animation` | Creating keyframe animation, skeletal animation, morph targets, animation mixers, or procedural motion |
+| `threejs-loaders` | Loading GLTF/GLB models, textures, HDR environments, Draco, KTX2, or other assets |
+| `threejs-shaders` | Writing GLSL, ShaderMaterial, uniforms, vertex effects, fragment effects, or shader extensions |
+| `threejs-postprocessing` | Using EffectComposer, bloom, DOF, color grading, custom passes, or screen effects |
+| `threejs-interaction` | Handling raycasting, controls, pointer input, touch input, selection, or object picking |
 
 ## Usage Examples
 
-### Basic Scene Setup
+Claude Code can load these skills automatically when your request matches a skill description. You can also invoke them directly after installation:
 
-Ask Claude Code:
+```text
+/threejs-fundamentals Create a responsive Three.js scene with a rotating cube
+/threejs-loaders Load a GLB model with Draco compression and play its animations
+/threejs-shaders Create a fresnel rim-light shader material
+/threejs-interaction Add raycast hover and click selection to meshes
+```
 
-> "Create a basic Three.js scene with a rotating cube"
+Natural-language requests work too:
 
-Claude Code will use `threejs-fundamentals` to generate accurate boilerplate with proper renderer setup, animation loop, and resize handling.
+- "Create a basic Three.js scene with a rotating cube."
+- "Load a GLTF model with Draco compression and play its animations."
+- "Add bloom post-processing and tune it for mobile performance."
+- "Create a custom shader material with a fresnel effect."
 
-### Loading 3D Models
+## Repository Structure
 
-Ask Claude Code:
+Each skill is a folder containing a `SKILL.md` file:
 
-> "Load a GLTF model with Draco compression and play its animations"
+```text
+skills/
+  threejs-fundamentals/
+    SKILL.md
+  threejs-loaders/
+    SKILL.md
+  threejs-shaders/
+    SKILL.md
+```
 
-Claude Code will use `threejs-loaders` and `threejs-animation` to generate code with proper loader configuration, animation mixer setup, and error handling.
-
-### Custom Shaders
-
-Ask Claude Code:
-
-> "Create a custom shader material with a fresnel effect"
-
-Claude Code will use `threejs-shaders` to generate working GLSL code with proper uniform declarations and coordinate space handling.
-
-## Skill File Structure
-
-Each skill file follows a consistent format:
+Each `SKILL.md` uses Agent Skills frontmatter:
 
 ```markdown
 ---
-name: skill-name
-description: When this skill should be activated
+name: threejs-fundamentals
+description: Three.js scene setup, cameras, renderer, Object3D hierarchy, coordinate systems. Use when setting up 3D scenes, creating cameras, configuring renderers, managing object hierarchies, or working with transforms.
 ---
-
-# Skill Title
-
-## Quick Start
-
-[Minimal working example]
-
-## Core Concepts
-
-[Detailed API documentation with examples]
-
-## Common Patterns
-
-[Real-world usage patterns]
-
-## Performance Tips
-
-[Optimization guidance]
-
-## See Also
-
-[Related skills]
 ```
+
+The skill body then provides focused reference material, examples, common patterns, performance tips, and related skills.
 
 ## Verification
 
-These skills have been audited against the official Three.js documentation (r160+) for:
+These skills are intended to align with modern Three.js documentation and patterns, including:
 
-- Correct class names and constructor signatures
-- Valid property names and method signatures
-- Accurate import paths (`three/addons/` format)
-- Working code examples
-- Current best practices
+- Current `three/addons/` import paths
+- Correct class names, constructor signatures, properties, and method names
+- Renderer setup, resizing, animation-loop, cleanup, and disposal patterns
+- Practical examples that can be adapted into Vite, React, Vue, vanilla JS, and other web projects
+
+Before publishing changes, run static checks:
+
+```bash
+find skills -maxdepth 2 -name SKILL.md
+```
+
+Confirm every skill has valid frontmatter with a matching `name` and a useful `description`.
+
+## Maintaining This Fork
+
+This fork tracks the original project as upstream:
+
+```bash
+git remote add upstream https://github.com/CloudAI-X/threejs-skills.git
+git fetch upstream
+git merge upstream/main
+```
+
+When syncing, keep the public Claude Code installation instructions, attribution, and repository-specific URLs pointing to this fork unless intentionally upstreaming the changes.
 
 ## Contributing
 
 Found an error or want to add coverage for additional Three.js features?
 
-1. Fork the repository
-2. Edit or create skill files in `.claude/skills/`
-3. Verify against [Three.js documentation](https://threejs.org/docs/)
-4. Submit a pull request
+1. Fork this repository.
+2. Edit or create skill files in `skills/<skill-name>/SKILL.md`.
+3. Verify examples against the [Three.js documentation](https://threejs.org/docs/).
+4. Open a pull request.
 
-### Skill File Guidelines
+Skill guidelines:
 
-- Use accurate, tested code examples
-- Include both simple and advanced patterns
-- Document performance implications
-- Cross-reference related skills
-- Keep examples concise but complete
+- Use accurate, tested code examples.
+- Keep descriptions specific so Claude Code can invoke the right skill.
+- Avoid broad `allowed-tools` permissions unless there is a concrete reason.
+- Document performance implications and cleanup requirements.
+- Cross-reference related Three.js skills.
 
-## License
+## License and Attribution
 
-MIT License - Feel free to use, modify, and distribute.
+This fork is based on [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills), which states MIT License terms. This adaptation preserves that attribution and remains MIT licensed.
 
-## Acknowledgments
-
-- [Three.js](https://threejs.org/) - The 3D library these skills document
+Three.js is created and maintained by the [Three.js project](https://threejs.org/).
