@@ -1,9 +1,16 @@
 ---
 name: threejs-fundamentals
-description: Three.js scene setup, cameras, renderer, Object3D hierarchy, coordinate systems. Use when setting up 3D scenes, creating cameras, configuring renderers, managing object hierarchies, or working with transforms.
+description: Core Three.js scene architecture for scenes, cameras, WebGLRenderer, Object3D hierarchy, transforms, coordinate systems, resize handling, animation loops, and cleanup. Use when creating or debugging the foundation of any Three.js app, canvas, component, viewport, or reusable 3D scene shell.
 ---
 
 # Three.js Fundamentals
+
+## Work Pattern
+
+- Start with the host app constraints: framework, canvas ownership, layout size, device pixel ratio, and lifecycle hooks.
+- Build the minimum scene shell first: `Scene`, camera, renderer, animation loop, resize handling, and disposal path.
+- Keep transforms explicit. Use `Group` for hierarchy, `Object3D` for pivots, and quaternions when avoiding Euler-order issues.
+- Pair with `threejs-lighting`, `threejs-materials`, `threejs-geometry`, or `threejs-loaders` once the base scene is stable.
 
 ## Quick Start
 

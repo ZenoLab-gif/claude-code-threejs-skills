@@ -1,9 +1,16 @@
 ---
 name: threejs-animation
-description: Three.js animation - keyframe animation, skeletal animation, morph targets, animation mixing. Use when animating objects, playing GLTF animations, creating procedural motion, or blending animations.
+description: Three.js animation workflows for AnimationMixer, AnimationClip, AnimationAction, keyframe tracks, skeletal animation, morph targets, fading, blending, additive animation, procedural motion, and clock-based updates. Use when playing GLTF animations, blending character states, animating transforms/materials/morphs, or building frame-rate independent motion.
 ---
 
 # Three.js Animation
+
+## Work Pattern
+
+- Use `Clock.getDelta()` or a framework-provided delta so mixer and procedural updates stay frame-rate independent.
+- For imported models, inspect `gltf.animations`, create one mixer per animated root, and store actions by semantic name.
+- Use fade/crossfade for state changes, clamp/loop settings for one-shots, and cleanup with `uncacheRoot` when removing animated assets.
+- Pair with `threejs-loaders` for GLTF animation, `threejs-geometry` for morph targets, and `threejs-interaction` for user-driven state changes.
 
 ## Quick Start
 

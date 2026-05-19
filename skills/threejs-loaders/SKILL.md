@@ -1,9 +1,16 @@
 ---
 name: threejs-loaders
-description: Three.js asset loading - GLTF, textures, images, models, async patterns. Use when loading 3D models, textures, HDR environments, or managing loading progress.
+description: Three.js asset loading for GLTF/GLB, Draco, KTX2, textures, HDR/EXR, cube maps, OBJ/MTL, FBX, STL, PLY, LoadingManager, async loading, caching, error handling, and asset cleanup. Use when importing models or textures, showing progress, configuring compressed assets, processing loaded scenes, or debugging missing/cross-origin assets.
 ---
 
 # Three.js Loaders
+
+## Work Pattern
+
+- Prefer GLB/GLTF for production models; use legacy OBJ/FBX/STL/PLY only when the source format requires it.
+- Configure decoder/transcoder paths before loading compressed assets, and keep those paths compatible with the app's public asset directory.
+- Handle progress, error states, traversal, material/texture setup, animation extraction, and disposal of replaced assets.
+- Pair with `threejs-animation` for clips, `threejs-textures` for color space and HDR setup, and `threejs-materials` for imported material adjustments.
 
 ## Quick Start
 

@@ -1,9 +1,16 @@
 ---
 name: threejs-shaders
-description: Three.js shaders - GLSL, ShaderMaterial, uniforms, custom effects. Use when creating custom visual effects, modifying vertices, writing fragment shaders, or extending built-in materials.
+description: Three.js shader development with ShaderMaterial, RawShaderMaterial, GLSL uniforms, attributes, varyings, texture sampling, vertex displacement, fresnel/rim/dissolve/noise effects, shader chunks, onBeforeCompile, and debugging. Use when built-in materials cannot express a visual effect, when extending PBR materials, or when writing custom vertex/fragment logic.
 ---
 
 # Three.js Shaders
+
+## Work Pattern
+
+- Use built-in materials plus `onBeforeCompile` when you need PBR lighting with small shader changes; use `ShaderMaterial` for fully custom effects.
+- Define every uniform, attribute, varying, color space expectation, and animation update path explicitly.
+- Keep shader code small first, verify coordinate spaces, then add lighting, texture sampling, noise, and post effects incrementally.
+- Pair with `threejs-materials` for material tradeoffs, `threejs-geometry` for attributes, and `threejs-postprocessing` for screen-space effects.
 
 ## Quick Start
 

@@ -1,9 +1,16 @@
 ---
 name: threejs-postprocessing
-description: Three.js post-processing - EffectComposer, bloom, DOF, screen effects. Use when adding visual effects, color grading, blur, glow, or creating custom screen-space shaders.
+description: Three.js post-processing with EffectComposer, RenderPass, ShaderPass, OutputPass, bloom, selective bloom, FXAA/SMAA, SSAO, depth of field, outlines, color correction, vignette, custom screen-space shaders, resize handling, and pass performance. Use when adding full-screen visual effects, glow, anti-aliasing, outlines, or render-to-texture pipelines.
 ---
 
 # Three.js Post-Processing
+
+## Work Pattern
+
+- Start with `RenderPass` plus one effect, then add passes in visual order and measure cost before stacking more.
+- Keep composer size, pixel ratio, camera, render targets, and all passes synchronized on resize.
+- Prefer selective or masked effects when only a few objects need bloom/outline treatment.
+- Pair with `threejs-shaders` for custom passes, `threejs-lighting` for bloom sources, and `threejs-textures` for render target workflows.
 
 ## Quick Start
 

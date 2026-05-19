@@ -1,9 +1,16 @@
 ---
 name: threejs-materials
-description: Three.js materials - PBR, basic, phong, shader materials, material properties. Use when styling meshes, working with textures, creating custom shaders, or optimizing material performance.
+description: Three.js material selection and tuning for MeshBasic, Lambert, Phong, Standard, Physical, Toon, Normal, Depth, Points, Lines, ShaderMaterial, transparency, environment maps, and material performance. Use when styling meshes, fixing surface appearance, wiring texture maps, choosing PBR settings, or deciding when a shader is needed.
 ---
 
 # Three.js Materials
+
+## Work Pattern
+
+- Pick the simplest material that satisfies the visual goal: unlit for UI/debug, Standard/Physical for PBR, ShaderMaterial only for custom math.
+- Check whether the scene has the required lighting, environment map, texture color spaces, and renderer output color space before changing material values.
+- Treat transparency, alpha sorting, and double-sided rendering as performance and ordering decisions, not default styling.
+- Pair with `threejs-textures` for maps, `threejs-lighting` for PBR response, and `threejs-shaders` for custom material behavior.
 
 ## Quick Start
 

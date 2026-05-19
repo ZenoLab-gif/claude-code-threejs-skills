@@ -1,9 +1,16 @@
 ---
 name: threejs-geometry
-description: Three.js geometry creation - built-in shapes, BufferGeometry, custom geometry, instancing. Use when creating 3D shapes, working with vertices, building custom meshes, or optimizing with instanced rendering.
+description: Three.js geometry creation and optimization for built-in primitives, BufferGeometry, attributes, indexes, normals, UVs, lines, points, text geometry, morph targets, and instancing. Use when building meshes, custom vertices, procedural shapes, dense repeated objects, or geometry-level performance fixes.
 ---
 
 # Three.js Geometry
+
+## Work Pattern
+
+- Choose built-in geometry before custom buffers unless the shape or data layout requires full control.
+- For custom geometry, define positions, indexes, normals, UVs, bounding volumes, and update flags deliberately.
+- Prefer `InstancedMesh` for many repeated meshes and `Points` or merged buffers for very dense simple visuals.
+- Pair with `threejs-materials` for surface behavior, `threejs-shaders` for per-vertex effects, and `threejs-animation` for morph targets.
 
 ## Quick Start
 

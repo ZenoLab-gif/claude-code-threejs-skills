@@ -1,9 +1,16 @@
 ---
 name: threejs-interaction
-description: Three.js interaction - raycasting, controls, mouse/touch input, object selection. Use when handling user input, implementing click detection, adding camera controls, or creating interactive 3D experiences.
+description: Three.js interaction patterns for raycasting, pointer and touch input, Orbit/Fly/FirstPerson/PointerLock/Trackball/Map controls, TransformControls, DragControls, selection, hover states, keyboard input, and world-screen coordinate conversion. Use when adding camera controls, object picking, dragging, editing gizmos, tool modes, or interactive 3D UI behavior.
 ---
 
 # Three.js Interaction
+
+## Work Pattern
+
+- Convert pointer coordinates relative to the renderer canvas, not always the full window, unless the canvas truly fills the viewport.
+- Keep controls updated in the animation loop when damping or time-based movement is enabled.
+- Separate hover, selection, drag, transform, and keyboard state so tool modes do not fight each other.
+- Pair with `threejs-fundamentals` for camera/canvas setup, `threejs-animation` for state feedback, and `threejs-postprocessing` for outlines or selection highlights.
 
 ## Quick Start
 

@@ -1,9 +1,16 @@
 ---
 name: threejs-textures
-description: Three.js textures - texture types, UV mapping, environment maps, texture settings. Use when working with images, UV coordinates, cubemaps, HDR environments, or texture optimization.
+description: Three.js texture loading, configuration, UV mapping, color spaces, wrapping, filtering, atlases, material maps, cube maps, HDR/EXR environments, render targets, video/canvas/data textures, and texture memory. Use when applying images, fixing washed-out colors, setting PBR maps, creating environment maps, or optimizing GPU texture usage.
 ---
 
 # Three.js Textures
+
+## Work Pattern
+
+- Set color space intentionally: color/albedo maps use `SRGBColorSpace`; data maps such as normal, roughness, metalness, AO, and displacement stay linear.
+- Configure wrapping, repeat, filters, mipmaps, and anisotropy based on the texture's purpose and scale on screen.
+- Dispose old textures and render targets when replacing assets or tearing down a scene.
+- Pair with `threejs-loaders` for asset pipelines, `threejs-materials` for map slots, and `threejs-lighting` for HDR environment use.
 
 ## Quick Start
 

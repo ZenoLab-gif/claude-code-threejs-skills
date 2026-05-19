@@ -1,9 +1,16 @@
 ---
 name: threejs-lighting
-description: Three.js lighting - light types, shadows, environment lighting. Use when adding lights, configuring shadows, setting up IBL, or optimizing lighting performance.
+description: Three.js lighting and shadow setup for ambient, hemisphere, directional, point, spot, rect area lights, helpers, shadow maps, contact shadows, environment lighting, IBL, and light performance. Use when a scene is too dark, flat, noisy, expensive, or needs realistic/stylized illumination.
 ---
 
 # Three.js Lighting
+
+## Work Pattern
+
+- Decide whether the scene needs direct lights, environment lighting, baked/fake lighting, or a mix before adding more lights.
+- Enable shadows only for the lights and meshes that need them, then tune map size, camera bounds, bias, and normal bias.
+- Use helpers while developing and remove or gate them for production.
+- Pair with `threejs-materials` for PBR response, `threejs-textures` for HDR environments, and `threejs-postprocessing` for bloom or screen-space polish.
 
 ## Quick Start
 
